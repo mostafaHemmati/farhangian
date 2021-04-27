@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Farhangian</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="activationGuide">راهنمای فعال سازی</string>
+    <string name="firstPoodeman">پودمان اول</string>
+    <string name="secondPoodeman">پودمان دوم</string>
+    <string name="appName">منابع آزمون تبصره 10</string>
+    <string name="network_conection_error">Network Connection Error!</string>
+</resources>
