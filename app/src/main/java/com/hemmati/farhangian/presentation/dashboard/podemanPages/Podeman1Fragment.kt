@@ -18,18 +18,9 @@ import com.hemmati.farhangian.util.showToast
 import kotlinx.android.synthetic.main.fragment_podeman.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class Podeman1Fragment : Fragment() {
+class Podeman1Fragment : Fragment(R.layout.fragment_podeman) {
     private lateinit var mSubCategoryAdapter: SubCategoryAdapter
     private val viewModel: DashboardViewModel by viewModel()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_podeman, container, false)
-
-        return view
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
