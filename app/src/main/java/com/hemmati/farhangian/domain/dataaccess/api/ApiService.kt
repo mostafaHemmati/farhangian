@@ -1,4 +1,4 @@
-package com.hemmati.farhangian.data.source.remot
+package com.hemmati.farhangian.domain.dataaccess.api
 
 import com.hemmati.farhangian.domain.model.activation.ActiveUserModel
 import com.hemmati.farhangian.domain.model.category.CategoryModel

@@ -26,6 +26,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        buildTypes.each {
+            it.buildConfigField "String", "BASE_URL", BASE_URL
+        }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

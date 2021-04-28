@@ -1,6 +1,7 @@
 package com.hemmati.farhangian.di
 
-import com.hemmati.farhangian.data.source.remot.ApiService
+import com.hemmati.farhangian.BuildConfig
+import com.hemmati.farhangian.domain.dataaccess.api.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -9,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 private const val TIME_OUT = 30L
-const val BASE_URL = "https://studioappmaker.ir/education/"
+const val BASE_URL = BuildConfig.BASE_URL
 
 val NetworkModule = module {
     single { createService(get()) }
@@ -17,9 +18,6 @@ val NetworkModule = module {
     single { createOkHttpClient() }
 
     single { GsonConverterFactory.create() }
-
-
-
 }
 
 fun createOkHttpClient(): OkHttpClient {

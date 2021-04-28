@@ -1,9 +1,7 @@
 package com.hemmati.farhangian.presentation.dashboard.podemanPages
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hemmati.farhangian.R
@@ -15,7 +13,6 @@ import com.hemmati.farhangian.util.showIf
 import com.hemmati.farhangian.util.showToast
 import kotlinx.android.synthetic.main.fragment_podeman.*
 import org.koin.android.viewmodel.ext.android.viewModel
-
 
 class Podeman2Fragment : Fragment(R.layout.fragment_podeman) {
     private lateinit var mSubCategoryAdapter: SubCategoryAdapter

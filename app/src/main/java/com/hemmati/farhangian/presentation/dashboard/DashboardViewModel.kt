@@ -21,7 +21,6 @@ class DashboardViewModel constructor(
     val showProgressbar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
-
     fun subCategorise(categoryId: String) {
         showProgressbar.value = true
         getCategoryUseCase.invoke(
