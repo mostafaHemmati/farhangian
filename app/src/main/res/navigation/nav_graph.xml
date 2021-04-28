@@ -8,5 +8,15 @@
         android:id="@+id/dashboardFragment"
         android:name="com.hemmati.farhangian.presentation.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_activationDialogFragment"
+            app:destination="@id/activationDialogFragment" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/activationDialogFragment"
+        android:name="com.hemmati.farhangian.presentation.dialog.ActivationDialogFragment"
+        android:label="ActivationDialogFragment"
+        tools:layout="@layout/fragment_activation_dialog" />
 </navigation>

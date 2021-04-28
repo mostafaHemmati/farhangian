@@ -3,6 +3,7 @@ package com.hemmati.farhangian.presentation.dashboard
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hemmati.farhangian.R
 import com.hemmati.farhangian.presentation.dashboard.podemanPages.Podeman1Fragment
@@ -14,6 +15,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViewPager()
+        initActivationButton()
     }
 
     private fun initViewPager() {
@@ -35,6 +37,14 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
                 else -> getString(R.string.secondPoodeman)
             }
         }.attach()
+    }
+
+    private fun initActivationButton() {
+        btnActivationGuide.setOnClickListener {
+            findNavController().navigate(
+                DashboardFragmentDirections.actionDashboardFragmentToActivationDialogFragment()
+            )
+        }
     }
 
 }

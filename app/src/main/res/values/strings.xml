@@ -7,4 +7,5 @@
     <string name="secondPoodeman">پودمان دوم</string>
     <string name="appName">منابع آزمون تبصره 10</string>
     <string name="network_conection_error">Network Connection Error!</string>
+    <string name="please_active_app">لطفا اپ را فعال کنید</string>
 </resources>
