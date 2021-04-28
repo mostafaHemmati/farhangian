@@ -1,6 +1,5 @@
 package com.hemmati.farhangian.domain.usecase.base
 
-import com.hemmati.coroutineskoinsampleproject.domain.usecase.base.UseCaseResponse
 import com.hemmati.farhangian.domain.exeption.traceErrorException
 import kotlinx.coroutines.*
 import java.util.concurrent.CancellationException

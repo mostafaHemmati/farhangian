@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hemmati.coroutineskoinsampleproject.domain.usecase.base.UseCaseResponse
+import com.hemmati.farhangian.domain.usecase.base.UseCaseResponse
 import com.hemmati.farhangian.domain.exeption.ApiError
 import com.hemmati.farhangian.domain.model.activation.ActiveUserModel
 import com.hemmati.farhangian.domain.model.subCategory.SubCategoryModel
