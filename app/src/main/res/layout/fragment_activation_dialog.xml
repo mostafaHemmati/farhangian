@@ -5,14 +5,26 @@
     android:layout_height="match_parent"
     android:background="@color/lightBlack"
     android:gravity="center"
-    tools:context=".presentation.dialog.ActivationDialogFragment">
+    android:orientation="vertical"
+    tools:context=".presentation.activationdialog.ActivationDialogFragment">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/please_active_app"
+        android:text="@string/please_send_code_to_admin"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="22sp"
+        android:textStyle="bold" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_corner_shape"
+        android:text="@string/send_code_to_admin"
+        android:textColor="@color/white"
+        android:textSize="18sp"
         android:textStyle="bold" />
 
 </LinearLayout>

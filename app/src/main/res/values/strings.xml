@@ -1,11 +1,12 @@
 <resources>
     <string name="app_name">Farhangian</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="activationGuide">راهنمای فعال سازی</string>
     <string name="firstPoodeman">پودمان اول</string>
     <string name="secondPoodeman">پودمان دوم</string>
     <string name="appName">منابع آزمون تبصره 10</string>
     <string name="network_conection_error">Network Connection Error!</string>
-    <string name="please_active_app">لطفا اپ را فعال کنید</string>
+    <string name="please_send_code_to_admin">لطفا شناسه کاربری خود را برای ادمین ارسال کنید تا اپ را برای شما فعال کند</string>
+    <string name="send_code_to_admin">ارسال شناسه کاربری به ادمین</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.hemmati.farhangian.presentation.dialog
+package com.hemmati.farhangian.presentation.activationdialog
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -16,7 +16,7 @@
 
     <dialog
         android:id="@+id/activationDialogFragment"
-        android:name="com.hemmati.farhangian.presentation.dialog.ActivationDialogFragment"
+        android:name="com.hemmati.farhangian.presentation.activationdialog.ActivationDialogFragment"
         android:label="ActivationDialogFragment"
         tools:layout="@layout/fragment_activation_dialog" />
 </navigation>
