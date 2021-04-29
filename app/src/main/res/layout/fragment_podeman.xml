@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/lightBlack"
     android:isScrollContainer="false"
-    tools:context=".presentation.dashboard.podemanPages.Podeman1Fragment">
+    tools:context=".presentation.dashboard.podemanpages.PoodemanFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/categoryRecyclerView"

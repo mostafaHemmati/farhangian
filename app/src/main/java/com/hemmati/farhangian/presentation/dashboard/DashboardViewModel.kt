@@ -1,68 +1,39 @@
 package com.hemmati.farhangian.presentation.dashboard
 
-import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.hemmati.farhangian.domain.usecase.base.UseCaseResponse
 import com.hemmati.farhangian.domain.exeption.ApiError
-import com.hemmati.farhangian.domain.model.activation.ActiveUserModel
-import com.hemmati.farhangian.domain.model.subCategory.SubCategoryModel
+import com.hemmati.farhangian.domain.model.category.CategoryData
+import com.hemmati.farhangian.domain.model.category.CategoryModel
 import com.hemmati.farhangian.domain.usecase.GetCategoryUseCase
-import com.hemmati.farhangian.domain.usecase.GetUserStateUseCase
-import kotlinx.coroutines.cancel
+import com.hemmati.farhangian.domain.usecase.base.UseCaseResponse
 
 class DashboardViewModel constructor(
-    private val getCategoryUseCase: GetCategoryUseCase,
-    private val getUserStateUseCase: GetUserStateUseCase
+    private val getCategoryUseCase: GetCategoryUseCase
 ) : ViewModel() {
-    val subCategoryData = MutableLiveData<SubCategoryModel>()
-    val userStateData = MutableLiveData<ActiveUserModel>()
-    val showProgressbar = MutableLiveData<Boolean>()
-    val messageData = MutableLiveData<String>()
 
-    fun subCategorise(categoryId: String) {
-        showProgressbar.value = true
-        getCategoryUseCase.invoke(
-            viewModelScope,
-            categoryId,
-            object : UseCaseResponse<SubCategoryModel> {
-                override fun onSuccess(result: SubCategoryModel) {
-                    subCategoryData.value = result
-                    showProgressbar.value = false
-                }
+    private val _submitFragmentList = MutableLiveData<List<CategoryData>>()
+    val submitFragmentList: LiveData<List<CategoryData>> get() = _submitFragmentList
 
-                override fun onError(apiError: ApiError?) {
-                    messageData.value = apiError?.getErrorMessage()
-                    showProgressbar.value = false
-                }
+    private val _error = MutableLiveData<String>()
+    val error:LiveData<String> get() = _error
 
-            })
+    init {
+        getCategories()
     }
 
-    fun getUserState(deviceId: String) {
-        Log.d(Companion.TAG, "getUserState: $deviceId")
-        getUserStateUseCase.invoke(
-            viewModelScope,
-            deviceId,
-            object : UseCaseResponse<ActiveUserModel> {
-                override fun onSuccess(result: ActiveUserModel) {
-                    userStateData.value = result
-                }
+    private fun getCategories() {
+        getCategoryUseCase.invoke(viewModelScope, null, object : UseCaseResponse<CategoryModel> {
+            override fun onSuccess(result: CategoryModel) {
+                _submitFragmentList.value = result.data
+            }
 
-                override fun onError(apiError: ApiError?) {
-                    messageData.value = apiError?.getErrorMessage()
-                }
-
-            })
+            override fun onError(apiError: ApiError?) {
+                _error.value = apiError?.message
+            }
+        })
     }
 
-    override fun onCleared() {
-        viewModelScope.cancel()
-        super.onCleared()
-    }
-
-    companion object {
-        private const val TAG = "DashboardViewModel"
-    }
 }

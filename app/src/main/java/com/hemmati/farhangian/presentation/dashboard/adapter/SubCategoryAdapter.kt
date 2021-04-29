@@ -1,4 +1,4 @@
-package com.hemmati.farhangian.presentation.dashboard
+package com.hemmati.farhangian.presentation.dashboard.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -39,14 +39,9 @@ class SubCategoryAdapter :
 
     inner class CategoryViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        init {
-            itemView.setOnClickListener {
-                onItemClick?.invoke(itemList[adapterPosition])
-            }
-        }
-
         fun bind(subCategoryData: SubCategoryData) {
 
+            itemView.setOnClickListener { onItemClick?.invoke(subCategoryData) }
             itemView.title.text = subCategoryData.subCategoryName
             itemView.number.text = "(${subCategoryData.filesCount})"
             Picasso.get()
@@ -54,7 +49,6 @@ class SubCategoryAdapter :
                 .placeholder(R.drawable.ic_baseline)
                 .fit()
                 .error(R.drawable.ic_baseline).into(itemView.categoryImg)
-
 
         }
 

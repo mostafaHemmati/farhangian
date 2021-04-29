@@ -1,12 +1,12 @@
-package com.hemmati.farhangian.presentation.dashboard.podemanPages
+package com.hemmati.farhangian.presentation.dashboard.podemanpages
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hemmati.farhangian.R
-import com.hemmati.farhangian.presentation.dashboard.DashboardViewModel
-import com.hemmati.farhangian.presentation.dashboard.SubCategoryAdapter
+import com.hemmati.farhangian.presentation.dashboard.adapter.SubCategoryAdapter
 import com.hemmati.farhangian.util.getDeviceId
 import com.hemmati.farhangian.util.isNetworkAvailable
 import com.hemmati.farhangian.util.showIf
@@ -14,9 +14,9 @@ import com.hemmati.farhangian.util.showToast
 import kotlinx.android.synthetic.main.fragment_podeman.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class Podeman1Fragment : Fragment(R.layout.fragment_podeman) {
+class PoodemanFragment : Fragment(R.layout.fragment_podeman) {
     private lateinit var mSubCategoryAdapter: SubCategoryAdapter
-    private val viewModel: DashboardViewModel by viewModel()
+    private val viewModel: PoodemanViewModel by viewModel()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,10 +26,8 @@ class Podeman1Fragment : Fragment(R.layout.fragment_podeman) {
     }
 
     private fun viewModelStartAndObserved() {
-
         if (isNetworkAvailable()) {
-            viewModel.subCategorise("poodeman1")
-            viewModel.getUserState(getDeviceId())
+            viewModel.subCategorise(arguments?.getString(CATEGORY_ID) ?: "")
         } else
             showToast(getString(R.string.network_conection_error))
 
@@ -49,12 +47,11 @@ class Podeman1Fragment : Fragment(R.layout.fragment_podeman) {
 
     private fun onClicksAction() {
         mSubCategoryAdapter.onItemClick = {
-            viewModel.userStateData.observe(viewLifecycleOwner, { result ->
-                showToast(it.filesCount.toString())
-//              todo  save user state
+            viewModel.checkIsActiveUserOrNot(getDeviceId(), {
+                //TODO navigate to videoList
+            }, {
+                showToast(getString(R.string.please_enable_app))
             })
-//todo if (user is active and video list not empty) goto video list fragment
-//            todo bundle = sub_category_id
         }
     }
 
@@ -67,4 +64,14 @@ class Podeman1Fragment : Fragment(R.layout.fragment_podeman) {
         }
     }
 
+    companion object {
+        const val CATEGORY_ID = "categoryId"
+        const val CATEGORY_NAME = "categoryName"
+        fun createInstance(categoryId: String, categoryName: String) = PoodemanFragment().apply {
+            arguments = bundleOf(
+                CATEGORY_ID to categoryId,
+                CATEGORY_NAME to categoryName
+            )
+        }
+    }
 }

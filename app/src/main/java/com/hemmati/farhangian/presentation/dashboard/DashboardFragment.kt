@@ -6,28 +6,31 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.tabs.TabLayoutMediator
 import com.hemmati.farhangian.R
-import com.hemmati.farhangian.presentation.dashboard.podemanPages.Podeman1Fragment
-import com.hemmati.farhangian.presentation.dashboard.podemanPages.Podeman2Fragment
+import com.hemmati.farhangian.domain.model.category.CategoryData
+import com.hemmati.farhangian.presentation.dashboard.adapter.ViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_dashboard.*
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
+    private val viewModel: DashboardViewModel by viewModel<DashboardViewModel>()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initViewPager()
+        observeViewModel()
         initActivationButton()
     }
 
-    private fun initViewPager() {
-        val fragmentList = arrayListOf(
-            Podeman1Fragment(),
-            Podeman2Fragment()
-        )
+    private fun observeViewModel() {
+        viewModel.submitFragmentList.observe(viewLifecycleOwner) {
+            initViewPager(it)
+        }
+    }
 
+    private fun initViewPager(categories: List<CategoryData>) {
         val viewPagerAdapter = ViewPagerAdapter(
-            fragmentList,
-            requireActivity().supportFragmentManager,
-            lifecycle
+            categories,
+            this
         )
         dashboardViewPager.adapter = viewPagerAdapter
 
