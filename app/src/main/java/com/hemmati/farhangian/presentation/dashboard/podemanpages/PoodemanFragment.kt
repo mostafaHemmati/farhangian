@@ -6,17 +6,24 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hemmati.farhangian.R
+import com.hemmati.farhangian.presentation.dashboard.DashboardViewModel
 import com.hemmati.farhangian.presentation.dashboard.adapter.SubCategoryAdapter
 import com.hemmati.farhangian.util.getDeviceId
 import com.hemmati.farhangian.util.isNetworkAvailable
 import com.hemmati.farhangian.util.showIf
 import com.hemmati.farhangian.util.showToast
 import kotlinx.android.synthetic.main.fragment_podeman.*
+import org.koin.android.viewmodel.ext.android.getViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class PoodemanFragment : Fragment(R.layout.fragment_podeman) {
+
     private lateinit var mSubCategoryAdapter: SubCategoryAdapter
     private val viewModel: PoodemanViewModel by viewModel()
+    private val parentViewModel by lazy {
+        requireParentFragment().getViewModel<DashboardViewModel>()
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -48,7 +55,7 @@ class PoodemanFragment : Fragment(R.layout.fragment_podeman) {
     private fun onClicksAction() {
         mSubCategoryAdapter.onItemClick = {
             viewModel.checkIsActiveUserOrNot(getDeviceId(), {
-                //TODO navigate to videoList
+                parentViewModel.navigateToVideoList()
             }, {
                 showToast(getString(R.string.please_enable_app))
             })

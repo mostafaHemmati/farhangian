@@ -25,6 +25,10 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         viewModel.submitFragmentList.observe(viewLifecycleOwner) {
             initViewPager(it)
         }
+
+        viewModel.navigateToVideoList.observe(viewLifecycleOwner) {
+            findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToVideoListFragment())
+        }
     }
 
     private fun initViewPager(categories: List<CategoryData>) {

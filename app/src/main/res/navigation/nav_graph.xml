@@ -8,10 +8,13 @@
         android:id="@+id/dashboardFragment"
         android:name="com.hemmati.farhangian.presentation.dashboard.DashboardFragment"
         android:label="fragment_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        tools:layout="@layout/fragment_dashboard">
         <action
             android:id="@+id/action_dashboardFragment_to_activationDialogFragment"
             app:destination="@id/activationDialogFragment" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_videoListFragment"
+            app:destination="@id/videoListFragment" />
     </fragment>
 
     <dialog
@@ -19,4 +22,11 @@
         android:name="com.hemmati.farhangian.presentation.activationdialog.ActivationDialogFragment"
         android:label="ActivationDialogFragment"
         tools:layout="@layout/fragment_activation_dialog" />
+
+    <fragment
+        android:id="@+id/videoListFragment"
+        android:name="com.hemmati.farhangian.presentation.videolist.VideoListFragment"
+        android:label="VideoListFragment"
+        tools:layout="@layout/fragment_video_list" />
+
 </navigation>
