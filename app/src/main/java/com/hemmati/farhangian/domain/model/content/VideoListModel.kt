@@ -1,7 +1,7 @@
 package com.hemmati.farhangian.domain.model.content
 
-data class ContentListModel(
-    val `data`: List<ContentData>,
+data class VideoListModel(
+    val `data`: List<VideoData>,
     val message: String,
     val status: String
 )

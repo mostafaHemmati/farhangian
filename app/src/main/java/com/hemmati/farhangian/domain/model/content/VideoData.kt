@@ -1,6 +1,6 @@
 package com.hemmati.farhangian.domain.model.content
 
-data class ContentData(
+data class VideoData(
     val id: Int,
     val subCategoryId: String,
     val videoName: String,

@@ -17,8 +17,8 @@ class DashboardViewModel constructor(
     private val _submitFragmentList = MutableLiveData<List<CategoryData>>()
     val submitFragmentList: LiveData<List<CategoryData>> get() = _submitFragmentList
 
-    private val _navigateToVideoList = MutableLiveData<Unit>()
-    val navigateToVideoList:LiveData<Unit> get() = _navigateToVideoList
+    private val _navigateToVideoList = MutableLiveData<String>()
+    val navigateToVideoList:LiveData<String> get() = _navigateToVideoList
 
     private val _error = MutableLiveData<String>()
     val error:LiveData<String> get() = _error
@@ -27,8 +27,8 @@ class DashboardViewModel constructor(
         getCategories()
     }
 
-    fun navigateToVideoList(){
-        _navigateToVideoList.value = Unit
+    fun navigateToVideoList(subCategoryId:String){
+        _navigateToVideoList.value = subCategoryId
     }
 
     private fun getCategories() {

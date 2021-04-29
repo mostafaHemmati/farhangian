@@ -8,6 +8,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.hemmati.farhangian.R
 import com.hemmati.farhangian.domain.model.category.CategoryData
 import com.hemmati.farhangian.presentation.dashboard.adapter.ViewPagerAdapter
+import com.hemmati.farhangian.util.showToast
 import kotlinx.android.synthetic.main.fragment_dashboard.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -22,12 +23,20 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     }
 
     private fun observeViewModel() {
+        viewModel.error.observe(viewLifecycleOwner) {
+            showToast(it)
+        }
+
         viewModel.submitFragmentList.observe(viewLifecycleOwner) {
             initViewPager(it)
         }
 
         viewModel.navigateToVideoList.observe(viewLifecycleOwner) {
-            findNavController().navigate(DashboardFragmentDirections.actionDashboardFragmentToVideoListFragment())
+            findNavController().navigate(
+                DashboardFragmentDirections.actionDashboardFragmentToVideoListFragment(
+                    subCategoryId = it
+                )
+            )
         }
     }
 

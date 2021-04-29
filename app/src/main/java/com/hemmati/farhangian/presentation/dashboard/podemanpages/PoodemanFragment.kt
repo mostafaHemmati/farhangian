@@ -55,7 +55,7 @@ class PoodemanFragment : Fragment(R.layout.fragment_podeman) {
     private fun onClicksAction() {
         mSubCategoryAdapter.onItemClick = {
             viewModel.checkIsActiveUserOrNot(getDeviceId(), {
-                parentViewModel.navigateToVideoList()
+                parentViewModel.navigateToVideoList(it.subCategoryId)
             }, {
                 showToast(getString(R.string.please_enable_app))
             })
