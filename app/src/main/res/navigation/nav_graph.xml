@@ -14,7 +14,9 @@
             app:destination="@id/activationDialogFragment" />
         <action
             android:id="@+id/action_dashboardFragment_to_videoListFragment"
-            app:destination="@id/videoListFragment" />
+            app:destination="@id/videoListFragment"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <dialog
