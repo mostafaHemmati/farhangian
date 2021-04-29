@@ -48,7 +48,7 @@ fun Fragment.showToast(text: String) {
 }
 
 @SuppressLint("HardwareIds")
-inline fun Fragment.getDeviceId(): String {
+fun Fragment.getDeviceId(): String {
     return Settings.Secure.getString(
         activity?.contentResolver,
         Settings.Secure.ANDROID_ID

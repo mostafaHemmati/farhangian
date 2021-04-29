@@ -49,6 +49,7 @@ dependencies {
     def kotlin_version = "1.4.32"
     def gson_converter_version = "2.4.0"
     def nav_version = "2.3.5"
+    def fragment_version = "1.3.3"
 
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -67,6 +68,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.4.0-alpha02'
     implementation 'androidx.viewpager2:viewpager2:1.0.0'
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
+    implementation "androidx.fragment:fragment-ktx:$fragment_version"
 
     //APIService
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
