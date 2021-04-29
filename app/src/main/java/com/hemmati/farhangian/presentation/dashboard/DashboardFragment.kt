@@ -35,7 +35,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
         dashboardViewPager.adapter = viewPagerAdapter
 
         TabLayoutMediator(tab_layout, dashboardViewPager) { tab, position ->
-            tab.text = viewModel.submitFragmentList.value?.get(position)?.categoryName
+            tab.text = viewModel.submitFragmentList.value?.get(position)?.categoryName ?: ""
         }.attach()
     }
 
