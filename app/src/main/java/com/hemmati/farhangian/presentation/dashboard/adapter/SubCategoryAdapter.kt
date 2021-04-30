@@ -8,7 +8,7 @@ import com.hemmati.farhangian.R
 import com.hemmati.farhangian.di.BASE_URL
 import com.hemmati.farhangian.domain.model.subCategory.SubCategoryData
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.category_list_item.view.*
+import kotlinx.android.synthetic.main.list_item_category.view.*
 import kotlin.properties.Delegates
 
 class SubCategoryAdapter :
@@ -22,7 +22,7 @@ class SubCategoryAdapter :
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
         return CategoryViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.category_list_item,
+                R.layout.list_item_category,
                 parent,
                 false
             )
