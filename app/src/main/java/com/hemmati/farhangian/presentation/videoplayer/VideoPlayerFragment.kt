@@ -20,7 +20,6 @@ class VideoPlayerFragment : Fragment(R.layout.fragment_video_player) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         getUrlArgument()
-        initPlayer()
     }
 
     private fun getUrlArgument() {
