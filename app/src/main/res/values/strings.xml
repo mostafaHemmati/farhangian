@@ -10,4 +10,7 @@
     <string name="please_enable_app">لطفا اپ را فعال کنید</string>
     <string name="your_username">نام کاربری شما: </string>
     <string name="video_list">لیست فیلم ها</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="play_video">پخش فیلم</string>
 </resources>

@@ -35,6 +35,24 @@
         android:id="@+id/videoListFragment"
         android:name="com.hemmati.farhangian.presentation.videolist.VideoListFragment"
         android:label="@string/video_list"
-        tools:layout="@layout/fragment_video_list" />
+        tools:layout="@layout/fragment_video_list">
+        <action
+            android:id="@+id/action_videoListFragment_to_videoPlayerFragment"
+            app:destination="@id/videoPlayerFragment"
+            app:popUpTo="@id/videoListFragment"
+            app:popUpToInclusive="true">
+
+            <argument
+                android:name="fileUrl"
+                app:argType="string" />
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/videoPlayerFragment"
+        android:name="com.hemmati.farhangian.presentation.videoplayer.VideoPlayerFragment"
+        android:label="@string/play_video"
+        tools:layout="@layout/fragment_video_player" />
 
 </navigation>

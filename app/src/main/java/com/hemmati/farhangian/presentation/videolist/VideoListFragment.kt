@@ -3,6 +3,7 @@ package com.hemmati.farhangian.presentation.videolist
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.hemmati.farhangian.R
 import com.hemmati.farhangian.domain.model.content.VideoData
@@ -34,7 +35,7 @@ class VideoListFragment : Fragment(R.layout.fragment_video_list) {
     }
 
     private fun setupRecyclerView(list: List<VideoData>) {
-        val adapter = VideoListAdapter()
+        val adapter = VideoListAdapter(::onItemClicked)
         recyclerView.layoutManager = GridLayoutManager(
             requireContext(),
             5,
@@ -43,6 +44,12 @@ class VideoListFragment : Fragment(R.layout.fragment_video_list) {
         )
         recyclerView.adapter = adapter
         adapter.submitList(list)
+    }
+
+    private fun onItemClicked(data: VideoData) {
+        findNavController().navigate(
+            VideoListFragmentDirections.actionVideoListFragmentToVideoPlayerFragment(data.videoUrl)
+        )
     }
 
 }

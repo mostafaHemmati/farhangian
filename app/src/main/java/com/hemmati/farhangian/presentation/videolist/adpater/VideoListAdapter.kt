@@ -10,12 +10,31 @@ import com.hemmati.farhangian.R
 import com.hemmati.farhangian.domain.model.content.VideoData
 import kotlinx.android.synthetic.main.list_item_video.view.*
 
-class VideoListAdapter : ListAdapter<VideoData, VideoListAdapter.VideoViewHolder>(DiffItemUtil()) {
+class VideoListAdapter(
+    private val onItemClicked: (VideoData) -> Unit
+) : ListAdapter<VideoData, VideoListAdapter.VideoViewHolder>(DiffItemUtil()) {
 
     class VideoViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        fun bind(position: Int, data: VideoData) {
+        fun bind(
+            position: Int,
+            data: VideoData,
+            onItemClicked: (VideoData) -> Unit
+        ) {
             itemView.txtVideoName.text = (position + 1).toString()
+            itemView.setOnClickListener {
+                onItemClicked.invoke(data)
+            }
         }
+    }
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
+        return VideoViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.list_item_video, parent, false)
+        )
+    }
+
+    override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
+        holder.bind(position, getItem(position), onItemClicked)
     }
 
     private class DiffItemUtil : DiffUtil.ItemCallback<VideoData>() {
@@ -26,17 +45,6 @@ class VideoListAdapter : ListAdapter<VideoData, VideoListAdapter.VideoViewHolder
         override fun areContentsTheSame(oldItem: VideoData, newItem: VideoData): Boolean {
             return oldItem == newItem
         }
-
-    }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VideoViewHolder {
-        return VideoViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.list_item_video, parent, false)
-        )
-    }
-
-    override fun onBindViewHolder(holder: VideoViewHolder, position: Int) {
-        holder.bind(position, getItem(position))
     }
 
 }
