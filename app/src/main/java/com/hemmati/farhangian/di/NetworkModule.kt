@@ -1,7 +1,6 @@
 package com.hemmati.farhangian.di
 
 import com.hemmati.farhangian.BuildConfig
-import com.hemmati.farhangian.domain.dataaccess.api.ApiService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -11,10 +10,12 @@ import java.util.concurrent.TimeUnit
 
 private const val TIME_OUT = 30L
 const val BASE_URL = BuildConfig.BASE_URL
+const val BASE_URL2 = "https://google.com"
 
 val NetworkModule = module {
-    single { createService(get()) }
-    single { createRetrofit(get(), BASE_URL) }
+//    single { createService(get()) }
+    single(NetworkQualifiers.RETROFIT_1) { createRetrofit(get(), BASE_URL) }
+    single(NetworkQualifiers.RETROFIT_2) { createRetrofit(get(), BASE_URL2) }
     single { createOkHttpClient() }
 
     single { GsonConverterFactory.create() }
@@ -36,9 +37,9 @@ fun createRetrofit(okHttpClient: OkHttpClient, url: String): Retrofit {
         .addConverterFactory(GsonConverterFactory.create()).build()
 }
 
-fun createService(retrofit: Retrofit): ApiService {
+/*fun createService(retrofit: Retrofit): ApiService {
     return retrofit.create(ApiService::class.java)
-}
+}*/
 
 
 

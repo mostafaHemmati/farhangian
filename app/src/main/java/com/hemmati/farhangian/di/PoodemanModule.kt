@@ -12,6 +12,7 @@ import com.hemmati.farhangian.presentation.videolist.VideoListViewModel
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.bind
 import org.koin.dsl.module
+import retrofit2.Retrofit
 
 val PoodemanModule = module {
     //viewModel
@@ -21,17 +22,35 @@ val PoodemanModule = module {
         VideoListViewModel(getVideoListUseCase = get(), subCategoryId = subCategoryId)
     }
 
-    //repositories
-    single { createSubCategoryRepository(apiService = get()) } bind SubCategoryRepository::class
-    single { createCategoryRepository(apiService = get()) } bind GetCategoryRepository::class
-    single { createGetUserStateRepository(apiService = get()) } bind GetUserStateRepository::class
-    single { createGetVideoListRepository(apiService = get()) } bind GetVideoListRepository::class
+    //repositories decide to get which instance from api services
+    single {
+        createSubCategoryRepository(apiService = get(PoodemanQualifiers.INSTANCE_1))
+    } bind SubCategoryRepository::class
+    single {
+        createCategoryRepository(apiService = get(PoodemanQualifiers.INSTANCE_1))
+    } bind GetCategoryRepository::class
+    single {
+        createGetUserStateRepository(apiService = get(PoodemanQualifiers.INSTANCE_1))
+    } bind GetUserStateRepository::class
+    single {
+        createGetVideoListRepository(apiService = get(PoodemanQualifiers.INSTANCE_1))
+    } bind GetVideoListRepository::class
 
     //useCases
     single { createCategoryUseCase(getCategoryRepository = get()) }
     single { createGetSubCategoryUseCase(subCategoryRepository = get()) }
     single { createGetUserStateUseCase(getUserStateRepository = get()) }
     single { createVideoListUseCase(getVideoListRepository = get()) }
+
+    //api services
+    single(PoodemanQualifiers.INSTANCE_1) {
+        getKoin().get<Retrofit>(qualifier = NetworkQualifiers.RETROFIT_1)
+            .create(ApiService::class.java)
+    }
+    single(PoodemanQualifiers.INSTANCE_2) {
+        getKoin().get<Retrofit>(qualifier = NetworkQualifiers.RETROFIT_1)
+            .create(ApiService::class.java)
+    }
 }
 
 fun createCategoryRepository(apiService: ApiService): GetCategoryRepository {
